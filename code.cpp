@@ -412,3 +412,198 @@ void information()
     }
     while(n!=4);
 }
+
+
+
+
+/*
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <stdexcept>
+#include <string>
+#include <sstream>
+#include <cstdlib>
+
+using namespace std;
+
+void new_account();
+void login();
+void check(string line, string login_username, string login_password);
+
+int main()
+{
+    int input=-1;
+
+    do
+    {
+        cout << "1.Create new Account" << "\n" << "2.Log In" << "\n" << "3.Quit" << endl;
+
+        cin >> input;
+
+        switch(input)
+        {
+            case 1:
+                new_account();
+                break;
+            case 2:
+                login();
+                break;
+            case 3:
+                exit(0);
+            default:
+                cout << "I am sorry, I didn't get it" << endl;
+        }
+    }while(input!=3);
+}
+
+void new_account()
+{
+    ofstream user_data("User Data.txt", ios::app);
+
+
+    string fname, lname, usrname, password;
+    long long phonenumber;
+    float amount;
+
+    try
+    {
+        if(user_data)
+        {
+            
+            cout << "Enter First name: ";
+            cin.ignore();
+            getline(cin, fname);
+            
+            cout << "Enter Last name: ";
+            getline(cin, lname);
+
+            cout << "Enter username: ";
+            getline(cin, usrname);
+            
+            cout << "Enter password: ";
+            getline(cin, password);
+
+            cout << "Enter Phone Number: ";
+            cin >> phonenumber;
+            
+            cout << "Enter Opening Balance: ";
+            cin >> amount;
+        }
+        else
+        throw runtime_error ("Error! in opening file, Please try again!");
+    }
+    catch (exception& e)
+    {
+        cout << e.what() << endl;
+    }
+
+    user_data << fname << " | " << lname << " | " << usrname << " | " << password << " | " << phonenumber << " | " << amount << endl;
+    user_data.close();
+}
+
+void login()
+{
+    fstream user_data ("User Data.txt");
+
+    try
+    {
+        if(!user_data)
+        {
+            throw runtime_error ("Erro! File not Found! Please Create account");
+        }
+    }
+    catch (exception& e)
+    {
+        cout << e.what() << endl;
+    }
+
+    string line="";
+
+    string login_username, login_password;
+
+    cout << "Enter Username: ";
+    cin.ignore();
+    getline(cin, login_username);
+
+    cout << "Enter Password: ";
+    getline(cin, login_password);
+
+
+    while(getline(user_data, line))
+    {
+        check(line, login_username, login_password);
+        line.erase(line.begin());   
+    }
+    user_data.close();
+}
+
+void check(string line, string login_username, string login_password)
+{
+
+    ofstream user_data("User Data.txt", ios::app);
+
+    string fname, lname, usrname, password;
+    long long phonenumber;
+    float amount, money;
+
+    stringstream ss(line);
+
+    getline(ss, fname, '|');
+    getline(ss, lname, '|');
+    getline(ss, usrname, '|');
+    getline(ss, password, '|');
+    string phone_str, balance_str;
+    getline(ss, phone_str, '|');
+    getline(ss, balance_str);
+
+    phonenumber = stoll(phone_str);
+    amount = stof(balance_str);
+
+
+    if(login_username.compare(usrname) && login_password.compare(password))
+    {
+        int login_input=-1;
+        do
+        {
+            cout << "1.Check Balance" << "\n" << "2.Deposite" << "\n" << "3.Withdraw" << "\n" << "4.Back" << "\n" << "5.Quit" <<endl;
+            cin >> login_input;
+
+            switch(login_input)
+            {
+                case 1:
+                    cout << "Balance is: " << amount << endl;
+                    break;
+                case 2:
+                    cout << "Enter Deposite amount: ";
+                    cin>> money;
+
+                    amount+=money;
+                    break;
+                case 3:
+                    cout << "Enter Whitdraw amount: ";
+                    cin>> money;
+
+                    if (amount < money)
+                    cout << "Not Enough Balance";
+                    else
+                    amount-=money;
+                    break;
+                case 4:
+                    main();
+                    break;
+                case 5:
+                    exit(0);
+                default:
+                    cout << "I am sorry, I didn't understand!" << endl;
+            }
+        }while(login_input!=5);
+        user_data << fname << " | " << lname << " | " << usrname << " | " << password << " | " << phonenumber << " | " << amount << endl;
+        user_data.close();
+    }
+    user_data << fname << " | " << lname << " | " << usrname << " | " << password << " | " << phonenumber << " | " << amount << endl;
+    user_data.close();
+
+
+}
+*/
